@@ -45,41 +45,41 @@ requires-python = ">=3.10,<4.0"
 dependencies = [
   "accelerate>=1.10.1",
   "datasets>=3.1.0",
-  "flwr>=1.18.0",
-  "mcp[cli]>=1.9.1",
-  "pyarrow>=19.0.1",
-  "pydantic>=2.10.5",
-  "pydantic-settings>=2.7.1",
-  "torch>=2.5.1",
-  "torchvision>=0.20.1",
-  "typing-extensions>=4.12.2"
+  "flwr>=1.22.0",
+  "mcp[cli]>=1.10.1",
+  "pyarrow>=21.0.0",
+  "pydantic>=2.12.2",
+  "pydantic-settings>=2.11.0",
+  "torch>=2.8.0",
+  "torchvision>=0.23.0",
+  "typing-extensions>=4.15.0"
 ]
 
 [project.optional-dependencies]
 huggingface = [
-  "peft>=0.14.0",
-  "transformers>=4.49.0",
-  "sentence-transformers>=3.4.1"
+  "peft>=0.17.1",
+  "transformers>=4.55.4",
+  "sentence-transformers>=5.1.1"
 ]
 qdrant = [
-  "grpcio>=1.71.0",
-  "qdrant-client[fastembed]>=1.14.2"
+  "grpcio>=1.75.1",
+  "qdrant-client[fastembed]>=1.15.1"
 ]
 llama-index = [
-  "llama-index-core>=0.12.35"
+  "llama-index-core>=0.14.5"
 ]
 langchain = [
-  "langchain-core>=0.3.62"
+  "langchain-core>=0.3.79"
 ]
 huggingface-evals = [
   "datasets>=3.1.0"
 ]
-unsloth = [
-  "unsloth>=2024.8",
-  "peft>=0.14.0",
-  "transformers>=4.49.0",
-  "sentence-transformers>=3.4.1"
-]
+#unsloth = [
+#  "unsloth>=2024.8",
+#  "peft>=0.17.1",
+#  "transformers>=4.55.4",
+#  "sentence-transformers>=5.1.1"
+#]
 
 [project.urls]
 Documentation = "https://vectorinstitute.github.io/fed-rag/"
@@ -95,6 +95,18 @@ omit = [
 [tool.hatch.build.targets.sdist]
 only-include = ["src", "tests"] # keep build small, exclude examples
 
+#[tool.uv]
+#required-environments = [
+#    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+#]
+
 [tool.uv.workspace]
 members = ["examples/quick-start", "examples/knowledge_stores/ra-dit"]
 exclude = ["examples/ra-dit"]
+
+[tool.uv.sources]
+torch = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"

@@ -50,3 +50,5 @@ import_profile.txt
 .coverage
 coverage.xml
 htmlcov/
+/.idea/
+/.python-version
